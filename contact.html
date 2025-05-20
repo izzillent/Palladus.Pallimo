@@ -2,12 +2,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<button id="theme-toggle">Toggle Dark Mode</button>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Contact Me</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script>
+  const toggleButton = document.getElementById('theme-toggle');
+
+  toggleButton.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', '');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+
+  // Load saved theme on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  });
+</script>
     <header>Palladus Pallimo Blog</header>
 
     <nav>
